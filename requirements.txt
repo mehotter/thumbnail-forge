@@ -1,0 +1,16 @@
+opencv-python
+numpy
+pillow
+mediapipe
+scikit-image
+scipy
+imutils
+ultralytics
+torch
+torchvision
+transformers
+google-cloud-vision
+boto3
+azure-cognitiveservices-vision-computervision
+requests
+

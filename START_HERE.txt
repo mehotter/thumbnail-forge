@@ -1,0 +1,88 @@
+================================================================================
+                AI THUMBNAIL EXTRACTION SYSTEM - GETTING STARTED
+================================================================================
+
+🎯 WHAT THIS DOES:
+   Extracts diverse, high-quality thumbnails from your video using AI/ML
+   Captures different scene types (hero, heroine, action, ensemble, etc.)
+   Adapts to video genre (action, romance, comedy, etc.)
+
+================================================================================
+                    FAST START (COPY & PASTE)
+================================================================================
+
+1. INSTALL DEPENDENCIES:
+   pip install -r requirements.txt
+
+2. TEST ON YOUR VIDEO (SIMPLE):
+   python test_video.py your_video.mp4
+
+3. TEST WITH CUSTOM GENRE:
+   python test_video.py your_video.mp4 action 15
+
+That's it! Your thumbnails will be saved in: your_video_thumbnails/
+
+================================================================================
+                          AVAILABLE SCRIPTS
+================================================================================
+
+📝 test_video.py          - Recommended! Simple, clean output
+📝 quick_test.py          - Alternative simple test
+📝 thumbnail_extractor.py - Full-featured CLI with all options
+
+================================================================================
+                          EXAMPLE COMMANDS
+================================================================================
+
+# Basic test (10 thumbnails, action genre)
+python test_video.py movie.mp4
+
+# Romance movie, 15 thumbnails
+python test_video.py movie.mp4 romance 15
+
+# Adventure movie, 12 thumbnails
+python test_video.py movie.mp4 adventure 12
+
+# Full command with all options
+python thumbnail_extractor.py movie.mp4 -g action -n 15 -r 30
+
+================================================================================
+                         SUPPORTED GENRES
+================================================================================
+
+✓ action     - Action movies, fights, stunts
+✓ romance    - Romantic scenes, couples
+✓ comedy     - Funny moments, humor
+✓ horror     - Suspenseful, scary scenes
+✓ adventure  - Outdoor, journey, exploration
+✓ sci-fi     - Technology, future, robots
+✓ drama      - Emotional, serious moments
+✓ family     - Family-friendly content
+
+================================================================================
+                         CLOUD APIS (OPTIONAL)
+================================================================================
+
+For even better results with cloud AI:
+
+1. Google Cloud Vision:
+   python thumbnail_extractor.py video.mp4 --cloud --google-creds credentials.json
+
+2. AWS Rekognition:
+   python thumbnail_extractor.py video.mp4 --cloud --aws-key KEY --aws-secret SECRET
+
+3. Azure Computer Vision:
+   python thumbnail_extractor.py video.mp4 --cloud --azure-endpoint ENDPOINT --azure-key KEY
+
+See SETUP_INSTRUCTIONS.md for detailed API setup.
+
+================================================================================
+                          NEED HELP?
+================================================================================
+
+Read README.md for full documentation
+Read SETUP_INSTRUCTIONS.md for cloud API setup
+Check example.py for code examples
+
+================================================================================
+

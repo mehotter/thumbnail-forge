@@ -1,0 +1,10 @@
+1) slot fix on workshops ( if slots hit zero no option to add cart)
+2) changes the day format from day 1  to 13th 
+3) forgot pass with temp otp to change password
+4) remove registration starts soon
+5) add brouchure
+6) add one more event in sci
+7) remove duplicate rs indicator in sci page and academic and in workshop list pages
+8) add contact page 
+9) add expert talk (7) ONE CHIEF and panel discussion (6)
+10) add tshirt thing

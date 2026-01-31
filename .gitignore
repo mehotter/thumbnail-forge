@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Large media files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+
+# ML Models
+*.pt
+*.pth
+*.onnx
+*.bin
+*.h5
+
+# Environment variables
+.env
+.env.local
+
+# Output/Upload dirs
+outputs/
+uploads/
+thumb_outputs/
+temp/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
