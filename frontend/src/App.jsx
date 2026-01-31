@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Upload, Sliders, Wand2, MonitorPlay, Loader2, Zap, Download, RotateCw } from 'lucide-react';
+import { Sliders, Wand2, MonitorPlay, Loader2, Zap } from 'lucide-react';
 
 // Main Application Component
 const App = () => {
@@ -24,11 +24,7 @@ const App = () => {
     }
   };
 
-  const handleReprompt = (originalPrompt) => {
-    setGenre(originalPrompt);
-    setThumbnails([]);
-    setSuccessMessage('Settings updated. Click Generate again!');
-  };
+
 
   const handleDownload = async (thumbnail, filename) => {
     try {
