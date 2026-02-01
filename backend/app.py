@@ -25,7 +25,14 @@ from werkzeug.utils import secure_filename
 import time
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for React frontend
+# Enable CORS for all origins (required for Vercel deployment)
+CORS(app, resources={
+    r"/api/*": {
+        "origins": "*",
+        "methods": ["GET", "POST", "OPTIONS"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 
 # Configuration
 UPLOAD_FOLDER = 'uploads'
