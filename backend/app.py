@@ -587,10 +587,13 @@ if __name__ == '__main__':
     import logging
     logging.basicConfig(level=logging.DEBUG)
 
+    # Get port from environment variable (Hugging Face uses PORT=7860)
+    port = int(os.environ.get('PORT', 7860))
+    
     print("="*80)
     print("Thumbnail Generation API Server")
     print("="*80)
-    print("Starting server on http://localhost:5000")
+    print(f"Starting server on http://0.0.0.0:{port}")
     print("API Endpoints:")
     print("  - GET  /api/health - Health check")
     print("  - POST /api/generate - Generate thumbnails")
@@ -600,4 +603,4 @@ if __name__ == '__main__':
     print("="*80)
 
     app.logger.setLevel(logging.DEBUG)
-    app.run(debug=True, host='0.0.0.0', port=5000, use_reloader=False)
+    app.run(debug=True, host='0.0.0.0', port=port, use_reloader=False)

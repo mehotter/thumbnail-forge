@@ -44,5 +44,5 @@ RUN mkdir -p uploads outputs
 # Expose Hugging Face standard port
 EXPOSE 7860
 
-# Run the Flask app on port 7860 (change port in the command)
-CMD ["python", "-c", "import sys; sys.path.insert(0, '.'); exec(open('backend/app.py').read().replace('port=5000', 'port=7860'))"]
+# Run the Flask app (now reads PORT from environment)
+CMD ["python", "backend/app.py"]
