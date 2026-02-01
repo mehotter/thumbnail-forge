@@ -93,14 +93,24 @@ const App = () => {
         }
 
         // Use the URLs provided by backend; ensure absolute as a safety
+        // Fix: Backend returns localhost URLs. We must replace them with the real backend URL.
+        const BACKEND_URL = 'https://mehotter-thumbnail-forge-backend.hf.space';
+
         const thumbnailsWithUrls = (data.thumbnails || []).map(thumb => {
           let url = thumb.url;
-          if (typeof url === 'string' && !url.startsWith('http')) {
-            url = `${url.startsWith('/') ? url : '/' + url}`;
+          // If URL is localhost, replace it with real backend
+          if (typeof url === 'string' && url.includes('localhost:5000')) {
+            url = url.replace('http://localhost:5000', BACKEND_URL);
+          } else if (typeof url === 'string' && !url.startsWith('http')) {
+            url = `${BACKEND_URL}${url.startsWith('/') ? url : '/' + url}`;
           }
-          const download_url = thumb.download_url && thumb.download_url.startsWith('http')
-            ? thumb.download_url
-            : url;
+
+          let download_url = thumb.download_url;
+          if (typeof download_url === 'string' && download_url.includes('localhost:5000')) {
+            download_url = download_url.replace('http://localhost:5000', BACKEND_URL);
+          } else {
+            download_url = url;
+          }
 
           return {
             ...thumb,
