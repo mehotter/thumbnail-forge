@@ -44,5 +44,8 @@ RUN mkdir -p uploads outputs
 # Expose Hugging Face standard port
 EXPOSE 7860
 
-# Run the Flask app (now reads PORT from environment)
-CMD ["python", "backend/app.py"]
+# Set Python path to include root directory for imports
+ENV PYTHONPATH=/app
+
+# Run the Flask app from root directory (so imports work)
+CMD ["python", "-m", "backend.app"]
