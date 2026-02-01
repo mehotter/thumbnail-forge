@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PORT=7860
 
-# Install minimal system dependencies (updated package names for newer Debian)
+# Install minimal system dependencies
 RUN apt-get update && apt-get install -y \
     libgl1 \
     libglib2.0-0 \
@@ -15,18 +15,21 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Copy and install ONLY backend requirements first (Flask, CORS)
+# Copy and install backend requirements first (Flask, CORS)
 COPY backend/requirements.txt backend_requirements.txt
 RUN pip install --no-cache-dir -r backend_requirements.txt
 
-# Install ONLY essential AI dependencies (not all from requirements.txt)
-# We'll install just what's needed for the backend to run
+# Install AI dependencies separately with correct sources
 RUN pip install --no-cache-dir \
-    opencv-python-headless \
     numpy \
     pillow \
-    torch --index-url https://download.pytorch.org/whl/cpu \
-    torchvision --index-url https://download.pytorch.org/whl/cpu
+    opencv-python-headless
+
+# Install PyTorch CPU-only version from official CPU index
+RUN pip install --no-cache-dir \
+    torch \
+    torchvision \
+    --index-url https://download.pytorch.org/whl/cpu
 
 # Copy application files
 COPY backend/ backend/
