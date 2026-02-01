@@ -71,7 +71,8 @@ const App = () => {
       formData.append('model', model);
       formData.append('variants', variants.toString());
 
-      const response = await fetch('/api/generate', {
+      // Use direct backend URL to avoid Vercel proxy timeouts
+      const response = await fetch('https://mehotter-thumbnail-forge-backend.hf.space/api/generate', {
         method: 'POST',
         body: formData,
       });
