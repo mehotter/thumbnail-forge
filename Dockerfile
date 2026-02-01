@@ -15,26 +15,28 @@ RUN apt-get update && apt-get install -y \
 # Set working directory
 WORKDIR /app
 
-# Copy and install backend requirements first (Flask, CORS)
-COPY backend/requirements.txt backend_requirements.txt
-RUN pip install --no-cache-dir -r backend_requirements.txt
-
-# Install AI dependencies separately with correct sources
+# Copy requirements files
+COPY requirements.txt ./
 RUN pip install --no-cache-dir \
     numpy \
     pillow \
     opencv-python-headless
 
-# Install PyTorch CPU-only version from official CPU index
+# Install PyTorch CPU-only version
 RUN pip install --no-cache-dir \
     torch \
     torchvision \
     --index-url https://download.pytorch.org/whl/cpu
 
-# Copy application files
-COPY backend/ backend/
+# Copy ALL Python files to root (so imports work)
 COPY *.py ./
 COPY yolov8n.pt ./
+
+# Copy backend folder
+COPY backend/ ./backend/
+
+# Install backend requirements (Flask, CORS)
+RUN pip install --no-cache-dir -r backend/requirements.txt
 
 # Create necessary directories
 RUN mkdir -p uploads outputs
@@ -42,5 +44,5 @@ RUN mkdir -p uploads outputs
 # Expose Hugging Face standard port
 EXPOSE 7860
 
-# Run the Flask app on port 7860
-CMD ["sh", "-c", "sed -i 's/port=5000/port=7860/' backend/app.py && python backend/app.py"]
+# Run the Flask app on port 7860 (change port in the command)
+CMD ["python", "-c", "import sys; sys.path.insert(0, '.'); exec(open('backend/app.py').read().replace('port=5000', 'port=7860'))"]
