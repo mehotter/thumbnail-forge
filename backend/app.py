@@ -26,13 +26,9 @@ import time
 
 app = Flask(__name__)
 # Enable CORS for all origins (required for Vercel deployment)
-CORS(app, resources={
-    r"/api/*": {
-        "origins": "*",
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type"]
-    }
-})
+# Enable CORS for all origins (required for Vercel deployment and direct calls)
+CORS(app)
+
 
 # Configuration
 UPLOAD_FOLDER = 'uploads'
